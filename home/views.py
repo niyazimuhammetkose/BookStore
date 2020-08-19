@@ -2,12 +2,14 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
 # Create your views here.
+from Book.models import Book
 from home.models import Setting, ContactForm, ContactFormMessage
 
 
 def index (request):
     setting = Setting.objects.get(pk=1)
-    context = {'setting': setting, 'page':'home'}
+    sliderdata = Book.objects.all()[:4]
+    context = {'setting': setting, 'page': 'home', 'sliderdata': sliderdata}
     return render(request, 'index.html', context)
 
 def aboutus(request):

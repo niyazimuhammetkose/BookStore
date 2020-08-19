@@ -41,6 +41,7 @@ class Book(models.Model):
     price = models.FloatField()
     amount = models.IntegerField()
     detail = RichTextUploadingField()
+    slug = models.SlugField(blank=True, max_length=150)
     status = models.CharField(max_length=10, choices=STATUS)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
