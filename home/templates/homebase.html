@@ -16,12 +16,15 @@
     <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'plugins/slick-1.8.0/slick.css' %}">
-{% if page %}
+{% if page == 'home' %}
     <link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
-{% else %}
+{% elif page == 'contact' or page == 'aboutus' or page == 'references' %}
     <link rel="stylesheet" type="text/css" href="{% static 'styles/contact_styles.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'styles/contact_responsive.css' %}">
+{% elif page == 'books' %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/shop_styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/shop_responsive.css' %}">
 {% endif %}
 
 
