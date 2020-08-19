@@ -1,0 +1,58 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %} {{ setting.title }} {% endblock %}
+{% block keywords %} {{ setting.keywords}} {% endblock %}
+{% block description %} {{ setting.description}} {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+{% block content %}
+    <!-- Home -->
+
+    <div class="home">
+        <div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/shop_background.jpg' %}"></div>
+        <div class="home_overlay"></div>
+        <div class="home_content d-flex flex-column align-items-center justify-content-center">
+            <h2 class="home_title">Giriş Yap</h2>
+        </div>
+    </div>
+
+    <div class="shop">
+        <div class="container">
+            <div class="row">
+
+                <div class ="col-md-12">
+                    <div>
+                        <div class="section-title">
+                            <h3 class="title">Giriş Formu</h3>
+                        </div>
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <form action="" method="post">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <input class="input" type="text" name="username" placeholder="Kullanıcı Adı">
+                            </div>
+                            <div class="form-group">
+                                <input class="input" type="password" name="password" placeholder="Şifre">
+                            </div>
+
+                            <input class="button cart_button" type="submit" value="Giriş Yap">
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -41,9 +41,24 @@
                             </ul>
                         </div>
                         <div class="top_bar_user">
-                            <div class="user_icon"><img src="{% static 'images/user.svg' %}" alt=""></div>
-                            <div><a href="#">Kayıt Ol</a></div>
-                            <div><a href="#">Giriş Yap</a></div>
+
+
+                            <ul class="standard_dropdown top_bar_dropdown">
+                                <li>{% if user.id is not None %}
+                                    <strong class="text-uppercase"><a href="#">{{ user.first_name }}<i class="fas fa-chevron-down"></i></a></strong>
+                                {% else %}
+                                    <div class="user_icon"><img src="{% static 'images/user.svg' %}" alt=""></div>
+                                    <div><a href="/login/">Giriş Yap<i class="fas fa-chevron-down"></i></a></div>
+                                    <div><a href="/join/">Kayıt Ol</a></div>
+                                {% endif %}
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-user-o"></i> Hesabım</a></li>
+                                        <li><a href="#"><i class="fa fa-user-o"></i> Siparişlerim</a></li>
+                                        <li><a href="#"><i class="fa fa-user-o"></i> Yorumlarım</a></li>
+                                        <li><a href="/logout/"><i class="fa fa-user-o"></i> Çıkış Yap</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 # Create your views here.
 from Book.models import Book, Category, Images, Comment
@@ -102,3 +103,30 @@ def book_search(request):
             return render(request, 'book_search.html', context)
 
     return HttpResponseRedirect('/')
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            #Redirect to a success page
+            messages.success(request, "Hoş Geldiniz..")
+            return HttpResponseRedirect('/')
+        else:
+            messages.warning(request, "Giriş Hatası! Kullanıcı adı ya da şifre yanlış")
+            return HttpResponseRedirect('/login')
+
+    category = Category.objects.all()
+    setting = Setting.objects.get(pk=1)
+    context = {
+        'setting': setting,
+        'page': 'login',
+        'category': category,
+    }
+    return render(request, 'login.html', context)
