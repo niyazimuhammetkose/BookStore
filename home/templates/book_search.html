@@ -1,0 +1,46 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %} Kitap Arama Sonuçları {% endblock %}
+{% block keywords %} {{ categorydata.keywords }} {% endblock %}
+{% block description %} {{ categorydata.description }} {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+{% block content %}
+    <!-- Home -->
+
+    <div class="home">
+        <div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/shop_background.jpg' %}"></div>
+        <div class="home_overlay"></div>
+        <div class="home_content d-flex flex-column align-items-center justify-content-center">
+            <h2 class="home_title">{{ categorydata.title}}</h2>
+        </div>
+    </div>
+
+    <!-- Contact Section Begin -->
+    <section class="contact spad">
+        <div class="container">
+            <div class="row">
+                <table cellpadding="3" width="1200">
+                    <tr>
+                        <th>Resim</th>
+                        <th>Kitap Adı</th>
+                        <th>Kategori</th>
+                        <th>Fiyat</th>
+                    </tr>
+                    {% for rs in books %}
+                        <tr>
+                        <td width="300" height="300"> <a href="/book/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" style="..." alt=""></a> </td>
+                        <td> <h4 class="product_name"><a href="/book/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></h4></td>
+                        <td> <a href="/category/{{ rs.category.id }}/{{ rs.category.slug }}">{{ rs.category }}</a> </td>
+                        <td> <h4>${{ rs.price }}</h4></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section End -->
+{% endblock %}

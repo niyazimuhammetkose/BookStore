@@ -31,6 +31,7 @@ urlpatterns = [
     path('references/', views.references, name='references'),
     path('category/<int:id>/<slug:slug>/', views.category_books, name='category_books'),
     path('book/<int:id>/<slug:slug>/', views.book_details, name='book_details'),
+    path('search/', views.book_search, name='book_search'),
 ]
 
 if settings.DEBUG: # new

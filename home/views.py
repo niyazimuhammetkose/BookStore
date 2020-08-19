@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.contrib import messages
 # Create your views here.
 from Book.models import Book, Category, Images, Comment
+from home.forms import SearchForm
 from home.models import Setting, ContactForm, ContactFormMessage
 
 
@@ -83,3 +84,21 @@ def book_details(request, id ,slug):
         'comments': comments,
     }
     return render(request, 'book_details.html', context)
+
+def book_search(request):
+    if request.method == 'POST':     # form post edildiyse
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            setting = Setting.objects.get(pk=1)
+            category = Category.objects.all()
+            query = form.cleaned_data['query']     # formdan bilgiyi al
+            books = Book.objects.filter(title__icontains=query)   # Select * from Book where title like %query%
+            context = {
+                'setting': setting,
+                'page': 'book_search',
+                'books': books,
+                       'category': category,
+            }
+            return render(request, 'book_search.html', context)
+
+    return HttpResponseRedirect('/')
