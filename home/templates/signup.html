@@ -15,7 +15,7 @@
         <div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/shop_background.jpg' %}"></div>
         <div class="home_overlay"></div>
         <div class="home_content d-flex flex-column align-items-center justify-content-center">
-            <h2 class="home_title">Giriş Yap</h2>
+            <h2 class="home_title">Kayıt Ol</h2>
         </div>
     </div>
 
@@ -26,7 +26,7 @@
                 <div class ="col-md-12">
                     <div>
                         <div class="section-title">
-                            <h3 class="title">Giriş Formu</h3>
+                            <h3 class="title">Kayıt Formu</h3>
                         </div>
                         {% if messages %}
                             {% for message in messages %}
@@ -38,15 +38,19 @@
 
                         <form action="" method="post">
                             {% csrf_token %}
-
-                            <div class="form-group">
-                                <input class="input" type="text" name="username" placeholder="Kullanıcı Adı">
-                            </div>
-                            <div class="form-group">
-                                <input class="input" type="password" name="password" placeholder="Şifre">
-                            </div>
-
-                            <button class="button cart_button" type="submit">Giriş Yap</button>
+                            {% for field in form %}
+                                <p>
+                                    {{ field.label_tag }}<br>
+                                    {{ field }}
+                                    {% if field.help_text %}
+                                        <small style="color: grey">{{ field.help_text }}</small>
+                                    {% endif %}
+                                    {% for error in field.errors %}
+                                        <p style="color: red">{{ error }}</p>
+                                    {% endfor %}
+                                </p>
+                            {% endfor %}
+                            <button class="button cart_button" type="submit">Kayıt Ol</button>
                         </form>
                     </div>
                 </div>
