@@ -5,7 +5,7 @@ from django.contrib import messages
 # Create your views here.
 from Book.models import Book, Category, Images, Comment
 from home.forms import SearchForm, SignUpForm
-from home.models import Setting, ContactForm, ContactFormMessage
+from home.models import Setting, ContactForm, ContactFormMessage, UserProfile
 from order.models import ShopCart
 
 def index (request):
@@ -142,6 +142,13 @@ def signup_view(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
+
+            # create data in profile table for user
+            current_user = request.user
+            data = UserProfile()
+            data.user_id = current_user.id
+            data.save()
+            messages.success(request, "Hoş geldiniz..")
             return HttpResponseRedirect('/')
 
     form = SignUpForm()
