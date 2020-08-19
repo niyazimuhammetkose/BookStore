@@ -6,15 +6,17 @@ from django.contrib import messages
 from Book.models import Book, Category, Images, Comment
 from home.forms import SearchForm, SignUpForm
 from home.models import Setting, ContactForm, ContactFormMessage
-
+from order.models import ShopCart
 
 def index (request):
+    current_user = request.user
     setting = Setting.objects.get(pk=1)
     sliderdata = Book.objects.all()[:4]
     latestdata = Book.objects.all().order_by('-id')[:4]
     randomdata = Book.objects.all().order_by('?')[:8]
     bestrateddata = Book.objects.all()[:4]
     category = Category.objects.all()
+    request.session['cart_items'] = ShopCart.objects.filter(user_id=current_user.id).count()  # count item in shop cart
     context = {'setting': setting,
                'page': 'home',
                'sliderdata': sliderdata,

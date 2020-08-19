@@ -130,7 +130,7 @@
                             <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                 <div class="cart_icon">
                                     <img src="{% static 'images/cart.png' %}" alt="">
-                                    <div class="cart_count"><span>{{ quantity }}</span></div>
+                                    <div class="cart_count"><span>{{ request.session.cart_items }}</span></div>
                                 </div>
                                 <div class="cart_content">
                                     <div class="cart_text"><a href="/shopcart/">Sepet</a></div>
