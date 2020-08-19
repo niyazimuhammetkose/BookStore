@@ -4,9 +4,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from Book.models import Category
-from home.models import Setting
-from order.models import ShopCartForm, ShopCart
+from django.utils.crypto import get_random_string
+
+from Book.models import Category, Book
+from home.models import Setting, UserProfile
+from order.models import ShopCartForm, ShopCart, OrderForm, Order, OrderBook
 
 
 def index(request):
@@ -96,3 +98,68 @@ def deletefromcart(request,id):
     request.session['cart_items'] = ShopCart.objects.filter(user_id=current_user.id).count()  # count item in shop cart
     messages.success(request, "Kitap sepetten silindi.")
     return HttpResponseRedirect('/shopcart/')
+
+@login_required(login_url='/login') #check login
+def orderbook(request):
+    setting = Setting.objects.get(pk=1)
+    category = Category.objects.all()
+    current_user = request.user
+    schopcart = ShopCart.objects.filter(user_id=current_user.id)
+    total = 0
+    for rs in schopcart:
+        total += rs.book.price * rs.quantity
+
+    if request.method == 'POST': #if there is a post
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            data = Order()
+            data.first_name = form.cleaned_data['first_name'] #get product quantity from form
+            data.last_name = form.cleaned_data['last_name']
+            data.address = form.cleaned_data['address']
+            data.city = form.cleaned_data['city']
+            data.country = form.cleaned_data['country']
+            data.phone = form.cleaned_data['phone']
+            data.user_id = current_user.id
+            data.total = total
+            data.ip = request.META.get('REMOTE_ADDR')
+            ordercode = get_random_string(5).upper()
+            data.code = ordercode
+            data.save()
+
+            #move shopcart items to order book items
+            schopcart = ShopCart.objects.filter(user_id = current_user.id)
+            for rs in schopcart:
+                    detail = OrderBook()
+                    detail.order_id = data.id #Order ID
+                    detail.book_id = rs.book_id
+                    detail.user_id = current_user.id
+                    detail.quantity = rs.quantity
+                    detail.price = rs.book.price
+                    detail.amount = rs.amount
+                    detail.save()
+                    #Reduce quantity of sold  book from Amount Of Book
+                    book = Book.objects.get(id=rs.book_id)
+                    book.amount -=rs.quantity
+                    book.save()
+                    #*************************************
+
+            ShopCart.objects.filter(user_id=current_user.id).delete() #Clear & Delete  shopcart
+            request.session['cart_items'] = 0
+            messages.success(request, "Siparişiniz alındı. Teşekkürler")
+            return render(request, 'Order_Compeleted.html', {'ordercode': ordercode, 'category': category, 'setting': setting, 'page': 'order_completed'})
+        else:
+            messages.warning(request, form.errors)
+            return HttpResponseRedirect("/order/orderbook/")
+
+    form = OrderForm()
+    profile = UserProfile.objects.get(user_id=current_user.id)
+    context = {'schopcart': schopcart,
+               'category': category,
+               'total': total,
+               'form': form,
+               'profile': profile,
+               'setting': setting,
+               'page': 'order_form'
+               }
+
+    return render(request, 'Order_Form.html', context)

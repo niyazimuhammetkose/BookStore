@@ -1,0 +1,82 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %} {{ categorydata.title }} Books {% endblock %}
+{% block keywords %} {{ categorydata.keywords}} {% endblock %}
+{% block description %} {{ categorydata.description}} {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+{% block content %}
+
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+
+            <div class="checkout__form">
+                <h4>Fatura Bilgileri</h4>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Ad<span>*</span></p>
+                                        <input type="text" name="first_name" placeholder="Ad" class="input" value="{{ user.first_name }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Soyad<span>*</span></p>
+                                        <input type="text" name="last_name" placeholder="Soyad" class="input" value="{{ user.last_name }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Telefon<span>*</span></p>
+                                <input type="text" name="phone" placeholder="Telefon" class="input" value="{{ profile.phone }}">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Adres<span>*</span></p>
+                                <input type="text" name="address" placeholder="Adres" class="input" value="{{ profile.address }}">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Şehir<span>*</span></p>
+                                <input type="text" name="city" placeholder="Şehir" class="input" value="{{ profile.city }}">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Ülke<span>*</span></p>
+                                <input type="text" name="country" placeholder="Ülke" class="input" value="{{ profile.country }}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="checkout__order">
+                                <h4>Ödeme Bilgileriniz</h4>
+                                <div class="checkout__order__products">Kitap <span>Adet</span> </div>
+                                <ul>
+                                    {% for rs in schopcart %}
+                                        <li>{{ rs.book }} <span>{{ rs.quantity }}</span> </li>
+                                    {% endfor %}
+                                </ul>
+
+                                <div class="checkout__order__subtotal">Kitap Tutar<span>${{ total }}</span></div>
+                                <div class="checkout__order__total">Toplam Tutar <span>${{ total }}</span></div>
+                                <div class="checkout__input__checkbox">
+                                    <label for="payment">
+                                        Ödeme bilgilerini onaylıyorum.
+                                        <input type="checkbox" id="payment">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="cart_button">Tamamla</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

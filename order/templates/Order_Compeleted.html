@@ -1,0 +1,27 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %} {{ categorydata.title }} Books {% endblock %}
+{% block keywords %} {{ categorydata.keywords}} {% endblock %}
+{% block description %} {{ categorydata.description}} {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+{% block content %}
+    <!-- Shop -->
+
+    <div class="shop">
+        <div class="container">
+            <div class="row">
+                <div class="align-content-center">
+                    Sayın  {{ user }}<br>
+                    Rezervasyonunuz tamamlanmıştır.<br>
+                    Rezervasyon numaranız : {{ ordercode }}<br>
+                    Teşekkür Ederiz.
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
