@@ -1,0 +1,70 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %} {{ categorydata.title }} Books {% endblock %}
+{% block keywords %} {{ categorydata.keywords}} {% endblock %}
+{% block description %} {{ categorydata.description}} {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+{% block content %}
+
+	<!-- Cart -->
+
+	<div class="cart_section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1">
+					<div class="cart_container">
+						<div class="cart_title">Sepet</div>
+						<div class="cart_items">
+							<ul class="cart_list">
+                                {% for rs in schopcart %}
+								<li class="cart_item clearfix">
+									<div class="cart_item_image"><img src="{{ rs.book.image.url}}" alt="" style="height: 120px"></div>
+									<div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+										<div class="cart_item_name cart_info_col">
+											<div class="cart_item_title">Adı</div>
+											<div class="cart_item_text">{{ rs.book}}</div>
+										</div>
+										<div class="cart_item_quantity cart_info_col">
+											<div class="cart_item_title">Adet</div>
+											<div class="cart_item_text">{{ rs.quantity }}</div>
+										</div>
+										<div class="cart_item_price cart_info_col">
+											<div class="cart_item_title">Fiyat</div>
+											<div class="cart_item_text">₺{{ rs.book.price }}</div>
+										</div>
+										<div class="cart_item_total cart_info_col">
+											<div class="cart_item_title">Tutar</div>
+											<div class="cart_item_text">₺{{ rs.amount }}</div>
+										</div>
+										<div class="cart_item_color cart_info_col">
+											<div class="cart_item_title">Sil</div>
+											<div class="cart_item_text"><a href="/order/deletefromcart/{{ rs.id }}"><button class="btn-primary">Sil</button></a></div>
+										</div>
+									</div>
+								</li>
+                                {% endfor %}
+							</ul>
+						</div>
+
+						<!-- Order Total -->
+						<div class="order_total">
+							<div class="order_total_content text-md-right">
+								<div class="order_total_title">Toplam Tutar:</div>
+								<div class="order_total_amount">₺{{ total }}</div>
+							</div>
+						</div>
+
+						<div class="cart_buttons">
+							<button type="button" class="button cart_button_checkout">Ödeme Yap</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

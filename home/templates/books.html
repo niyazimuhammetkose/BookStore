@@ -40,7 +40,7 @@
                                         <ul>
                                             <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "original-order" }'>highest rated</li>
                                             <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>name</li>
-                                            <li class="shop_sorting_button"data-isotope-option='{ "sortBy": "price" }'>price</li>
+                                            <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "price" }'>price</li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -58,7 +58,7 @@
                                     <div class="product_image "><img src="{{ rs.image.url}}" alt="" style="max-height: 200px"></div>
                                     <div class="product_content">
                                         <div class="product_price">₺{{ rs.price }}</div>
-                                        <div class="product_name"><div><a href="#" tabindex="0" >{{ rs.title}}</a></div></div>
+                                        <div class="product_name"><div><a href="/book/{{ rs.id }}/{{ rs.slug }}" tabindex="0" >{{ rs.title}}</a></div></div>
                                     </div>
                                     <div class="product_fav"><i class="fas fa-heart"></i></div>
                                     <ul class="product_marks">
@@ -68,11 +68,7 @@
                                 </div>
                             {% endfor %}
 
-
                         </div>
-
-
-
 
                     </div>
 

@@ -21,6 +21,15 @@
                         </div>
                         <a href="mailto:{{ setting.email}}">{{ setting.email}}</a>
                     </div>
+                    <div class="top_bar_contact_item">
+                        {% if messages  %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
                     <div class="top_bar_content ml-auto">
                         <div class="top_bar_menu">
                             <ul class="standard_dropdown top_bar_dropdown">
@@ -121,11 +130,11 @@
                             <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                 <div class="cart_icon">
                                     <img src="{% static 'images/cart.png' %}" alt="">
-                                    <div class="cart_count"><span>10</span></div>
+                                    <div class="cart_count"><span>{{ quantity }}</span></div>
                                 </div>
                                 <div class="cart_content">
-                                    <div class="cart_text"><a href="#">Sepet</a></div>
-                                    <div class="cart_price">₺85</div>
+                                    <div class="cart_text"><a href="/shopcart/">Sepet</a></div>
+                                    <div class="cart_price">₺{{ total }}</div>
                                 </div>
                             </div>
                         </div>
