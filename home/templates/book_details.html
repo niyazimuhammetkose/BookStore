@@ -21,61 +21,169 @@
 
     <!-- Single Product -->
 
-	<div class="single_product">
-		<div class="container">
-			<div class="row">
+    <div class="single_product">
+        <div class="container">
+            <div class="row">
 
-				<!-- Images -->
-				<div class="col-lg-2 order-lg-1 order-2">
+                <!-- Images -->
+                <div class="col-lg-2 order-lg-1 order-2">
                     {% for rs in images %}
-					<ul class="image_list">
-						<li><img src="{{ rs.image.url}}" alt=""></li>
-					</ul>
+                        <ul class="image_list">
+                            <li><img src="{{ rs.image.url}}" alt=""></li>
+                        </ul>
                     {% endfor %}
-				</div>
+                </div>
 
-				<!-- Selected Image -->
-				<div class="col-lg-5 order-lg-2 order-1">
-					<div class="image_selected"><img src="{{ book.image.url }}" alt=""></div>
-				</div>
+                <!-- Selected Image -->
+                <div class="col-lg-5 order-lg-2 order-1">
+                    <div class="image_selected"><img src="{{ book.image.url }}" alt=""></div>
+                </div>
 
-				<!-- Description -->
-				<div class="col-lg-5 order-3">
-					<div class="product_description">
-						<div class="product_category">{{ book.category }}</div>
-						<div class="product_name">{{ book.title}}</div>
+                <!-- Description -->
+                <div class="col-lg-5 order-3">
+                    <div class="product_description">
+                        <div class="product_category">{{ book.category }}</div>
+                        <div class="product_name">{{ book.title}}</div>
                         <div class="product_category">{{ book.author }}</div>
-						<div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
-						<div class="product_text"><p>{{ book.description | safe }}</p></div>
-						<div class="order_info d-flex flex-row">
-							<form action="#">
-								<div class="clearfix" style="z-index: 1000;">
+                        <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
+                        <div class="product_text"><p>{{ book.description | safe }}</p></div>
+                        <div class="order_info d-flex flex-row">
+                            <form action="#">
+                                <div class="clearfix" style="z-index: 1000;">
 
-									<!-- Product Quantity -->
-									<div class="product_quantity clearfix">
-										<span>Adet: </span>
-										<input id="quantity_input" type="text" pattern="[0-9]*" value="1">
-										<div class="quantity_buttons">
-											<div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
-											<div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
-										</div>
-									</div>
+                                    <!-- Product Quantity -->
+                                    <div class="product_quantity clearfix">
+                                        <span>Adet: </span>
+                                        <input id="quantity_input" type="text" pattern="[0-9]*" value="1">
+                                        <div class="quantity_buttons">
+                                            <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
+                                            <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
+                                        </div>
+                                    </div>
 
-								</div>
+                                </div>
 
-								<div class="product_price">₺{{ book.price }}</div>
-								<div class="button_container">
-									<button type="button" class="button cart_button">Sepete Ekle</button>
-									<div class="product_fav"><i class="fas fa-heart"></i></div>
-								</div>
+                                <div class="product_price">₺{{ book.price }}</div>
+                                <div class="button_container">
+                                    <button type="button" class="button cart_button">Sepete Ekle</button>
+                                    <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                </div>
 
-							</form>
-						</div>
-					</div>
-				</div>
 
-			</div>
-		</div>
-	</div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 order-12">
+                                    <div class="product__details__tab">
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                                                   aria-selected="true">Detay</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                                                   aria-selected="false">Yorumlar</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                                <div class="product__details__tab__desc">
+                                                    <p>{{ book.detail | safe }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane" id="tabs-2" role="tabpanel">
+
+                                                <div class="row">
+
+                                                    <div class="col-md-6">
+                                                        <div class="product-reviews">
+                                                            {% for rs in comments %}
+                                                                <div class="single-review">
+                                                                    <div class="review-heading">
+                                                                        <a href="#"><i class="fa fa-user-o"></i> <b>{{ rs.user.first_name }}</b></a>
+                                                                        <a href="#"><i class="fa fa-clock-o"></i> {{ rs.create_at }}</a>
+                                                                        <div class="review-rating pull-right">
+                                                                            <i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}"></i>
+                                                                            <i class="fa fa-star{% if rs.rate < 2 %}-o empty{% endif %}"></i>
+                                                                            <i class="fa fa-star{% if rs.rate < 3 %}-o empty{% endif %}"></i>
+                                                                            <i class="fa fa-star{% if rs.rate < 4 %}-o empty{% endif %}"></i>
+                                                                            <i class="fa fa-star{% if rs.rate < 5 %}-o empty{% endif %}"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="review-body">
+                                                                        <b>{{ rs.subject }}</b>
+                                                                        <p>{{ rs.comment }}</p>
+                                                                    </div>
+                                                                </div>
+                                                            {% endfor %}
+
+                                                            <div class="col-lg-12">
+                                                                <div class="product__pagination blog__pagination">
+                                                                    <a class="active">1</a>
+                                                                    <a href="#">2</a>
+                                                                    <a href="#">3</a>
+                                                                    <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <h4 class="text-uppercase">Yorumunuzu Paylaşın</h4>
+                                                        {% if messages %}
+                                                            {% for message in messages %}
+                                                                <div class="alert alert-{{ message.tags }}" role="alert">
+                                                                    {{ message }}
+                                                                </div>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                        <p>Email adresiniz paylaşılmayacaktır.</p>
+
+                                                        <form class="review-form" action="/book/addcomment/{{ book.id }}" method="post">
+                                                            {% csrf_token %}
+                                                            <div class="form-group">
+                                                                <input class="input" type="text" name="subject" id="id_subject" placeholder="Konu"/>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <textarea class="input" name="comment" id="id_comment" placeholder="Yorumunuz"></textarea>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <div class="input-rating">
+                                                                    <strong class="text-uppercase">Derecelendirmeniz: </strong>
+                                                                    <div class="stars">
+                                                                        <input type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
+                                                                        <input type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
+                                                                        <input type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
+                                                                        <input type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
+                                                                        <input type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            {% if user.id is not None %}
+                                                                <button class="button cart_button">Yorum Yap</button>
+                                                            {% else %}
+                                                                Yorum eklemek için <a href="/login">Login</a> olunuz!
+                                                            {% endif %}
+
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

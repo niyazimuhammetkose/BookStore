@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
 # Create your views here.
-from Book.models import Book, Category, Images
+from Book.models import Book, Category, Images, Comment
 from home.models import Setting, ContactForm, ContactFormMessage
 
 
@@ -73,11 +73,13 @@ def book_details(request, id ,slug):
     category = Category.objects.all()
     book = Book.objects.get(pk=id)
     images = Images.objects.filter(book_id=id)
+    comments = Comment.objects.filter(book_id=id, status='True')
     context = {
         'setting': setting,
         'page': 'book_details',
         'book': book,
         'category': category,
         'images': images,
+        'comments': comments,
     }
     return render(request, 'book_details.html', context)

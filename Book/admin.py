@@ -1,8 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
-from mptt.admin import  DraggableMPTTAdmin
-from Book.models import Category, Book, Images
+from mptt.admin import DraggableMPTTAdmin
+from Book.models import Category, Book, Images, Comment
 
 class BookImageInLine(admin.TabularInline):
     model = Images
@@ -22,6 +22,10 @@ class BookAdmin(admin.ModelAdmin):
 class ImagesAdmin(admin.ModelAdmin):
     list_display = ['title', 'book', 'image_tag']
     readonly_fields = ('image_tag',)
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['subject', 'comment', 'book', 'user', 'status']
+    list_filter = ['status']
 
 class CategoryAdmin2(DraggableMPTTAdmin):
     mptt_indent_field = "title"
@@ -53,3 +57,4 @@ class CategoryAdmin2(DraggableMPTTAdmin):
 admin.site.register(Category, CategoryAdmin2)
 admin.site.register(Book, BookAdmin)
 admin.site.register(Images, ImagesAdmin)
+admin.site.register(Comment, CommentAdmin)
