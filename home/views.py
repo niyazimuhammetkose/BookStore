@@ -9,8 +9,17 @@ from home.models import Setting, ContactForm, ContactFormMessage
 def index (request):
     setting = Setting.objects.get(pk=1)
     sliderdata = Book.objects.all()[:4]
+    latestdata = Book.objects.all().order_by('-id')[:4]
+    randomdata = Book.objects.all().order_by('?')[:8]
+    bestrateddata = Book.objects.all()[:4]
     category = Category.objects.all()
-    context = {'setting': setting, 'page': 'home', 'sliderdata': sliderdata, 'category': category}
+    context = {'setting': setting,
+               'page': 'home',
+               'sliderdata': sliderdata,
+               'category': category,
+               'latestdata': latestdata,
+               'randomdata': randomdata,
+               'bestrateddata': bestrateddata}
     return render(request, 'index.html', context)
 
 def aboutus(request):
