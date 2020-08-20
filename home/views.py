@@ -11,10 +11,10 @@ from order.models import ShopCart
 def index (request):
     current_user = request.user
     setting = Setting.objects.get(pk=1)
-    sliderdata = Book.objects.all()[:4]
-    latestdata = Book.objects.all().order_by('-id')[:4]
-    randomdata = Book.objects.all().order_by('?')[:8]
-    bestrateddata = Book.objects.all()[:4]
+    sliderdata = Book.objects.all()
+    latestdata = Book.objects.all().order_by('-id')[:6]
+    randomdata = Book.objects.all().order_by('?')
+    bestrateddata = Book.objects.all()[:6]
     category = Category.objects.all()
     request.session['cart_items'] = ShopCart.objects.filter(user_id=current_user.id).count()  # count item in shop cart
     context = {'setting': setting,
@@ -100,7 +100,7 @@ def book_search(request):
                 'setting': setting,
                 'page': 'book_search',
                 'books': books,
-                       'category': category,
+                'category': category,
             }
             return render(request, 'book_search.html', context)
 

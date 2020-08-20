@@ -10,15 +10,16 @@
 
 
 {% block content %}
-    <!-- Home -->
-
-    <div class="home">
-        <div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/shop_background.jpg' %}"></div>
-        <div class="home_overlay"></div>
-        <div class="home_content d-flex flex-column align-items-center justify-content-center">
-            <h2 class="home_title">Hesabım</h2>
+    <!-- BREADCRUMB -->
+    <div id = "breadcrumb">
+        <div class ="container">
+            <ul class ="breadcrumb-item">
+                <li><a href="/">Anasayfa</a></li>
+                <li class="active">/ Hesabım</li>
+            </ul>
         </div>
     </div>
+    <!-- /BREADCRUMB -->
 
 
     <div class="shop">
@@ -46,15 +47,15 @@
                         </tr>
 
                         {% for rs in orders %}
-                        <tr>
-                            <td class="text-left">{{ rs.id }}</td>
-                            <td class="text-left">{{ rs.first_name }}</td>
-                            <td class="text-left">{{ rs.last_name }}</td>
-                            <td class="text-left">{{ rs.total }}</td>
-                            <td class="text-left">{{ rs.status }}</td>
-                            <td class="text-left">{{ rs.create_at }}</td>
-                            <td class="text-left"><button class="button cart_button"><a href="/user/orderdetail/{{ rs.id }}">Detay</a></button></td>
-                        </tr>
+                            <tr>
+                                <td class="text-left">{{ rs.id }}</td>
+                                <td class="text-left">{{ rs.first_name }}</td>
+                                <td class="text-left">{{ rs.last_name }}</td>
+                                <td class="text-left">{{ rs.total }}</td>
+                                <td class="text-left">{{ rs.status }}</td>
+                                <td class="text-left">{{ rs.create_at }}</td>
+                                <td class="text-left"><button class="button cart_button"><a href="/user/orderdetail/{{ rs.id }}">Detay</a></button></td>
+                            </tr>
                         {% endfor %}
 
                     </table>

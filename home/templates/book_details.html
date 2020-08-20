@@ -9,16 +9,16 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Home -->
-
-    <div class="home">
-        <div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/shop_background.jpg' %}"></div>
-        <div class="home_overlay"></div>
-        <div class="home_content d-flex flex-column align-items-center justify-content-center">
-            <h2 class="home_title">{{ book.title}}</h2>
+    <!-- BREADCRUMB -->
+    <div id = "breadcrumb">
+        <div class ="container">
+            <ul class ="breadcrumb-item">
+                <li><a href="/">Anasayfa</a></li>
+                <li class="active">/ {{ book.title}}</li>
+            </ul>
         </div>
     </div>
-
+    <!-- /BREADCRUMB -->
     <!-- Single Product -->
 
     <div class="single_product">
@@ -135,13 +135,6 @@
 
                                     <div class="col-md-6">
                                         <h4 class="text-uppercase">Yorumunuzu Paylaşın</h4>
-                                        {% if messages %}
-                                            {% for message in messages %}
-                                                <div class="alert alert-{{ message.tags }}" role="alert">
-                                                    {{ message }}
-                                                </div>
-                                            {% endfor %}
-                                        {% endif %}
                                         <p>Email adresiniz paylaşılmayacaktır.</p>
 
                                         <form class="review-form" action="/book/addcomment/{{ book.id }}" method="post">

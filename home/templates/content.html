@@ -18,7 +18,8 @@
                         </div>
 
                         <!-- Product Panel -->
-                        <div class="product_panel panel active">
+                        <div class="product_panel panel active" style="width: available">
+
                             <div class="featured_slider slider">
 
                                 {% for rs in randomdata %}       <!-- Random data sorgu-->
@@ -28,15 +29,14 @@
                                         <div class="border_active"></div>
                                         <div class="product_item d-flex flex-column align-items-center justify-content-center text-center">
 
-                                            <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="{{ rs.image.url }}" alt=""></div>
+                                            <div class="product_image d-flex flex-column align-items-center justify-content-center"><a href="/book/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" alt="" style="height: 170px"></a></div>
                                             <div class="product_content">
-                                                <div class="product_price discount">₺{{ rs.price }}<span>₺{{ rs.price }}</span></div>
+                                                <div class="product_price">₺{{ rs.price }}</div>
                                                 <div class="product_name"><div><a href="/book/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></div></div>
                                                 <div class="product_extras">
-                                                    <button class="product_cart_button"><a href="/order/addtocart/{{ rs.id }}">Sepete Ekle</a></button>
+                                                    <button class="button product_cart_button"><a href="/order/addtocart/{{ rs.id }}">Sepete Ekle</a></button>
                                                 </div>
                                             </div>
-                                            <div class="product_fav"><i class="fas fa-heart"></i></div>
 
                                         </div>
                                     </div>
@@ -53,6 +53,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Reviews -->
 
@@ -74,7 +75,7 @@
                             <!-- Reviews Slider Item -->
                             <div class="owl-item">
                                 <div class="review d-flex flex-row align-items-start justify-content-start">
-                                    <div><div class="review_image"><img src="{{ rs.image.url }}" alt=""></div></div>
+                                    <div><div class="review_image"><a href="/book/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" alt=""></a></div></div>
                                     <div class="review_content">
                                         <div class="review_name"><a href="/book/{{ rs.id }}/{{ rs.slug }}">{{ rs.title}}</a></div>
                                         <div class="review_rating_container">
@@ -119,10 +120,10 @@
                             <!-- Recently Viewed Item -->
                             <div class="owl-item">
                                 <div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                    <div class="viewed_image"><img src="{{ rs.image.url}}" alt=""></div>
+                                    <div class="viewed_image"><a href="/book/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url}}" alt=""></a></div>
                                     <div class="viewed_content text-center">
-                                        <div class="viewed_price">₺{{ rs.price }}</div>
-                                        <div class="viewed_name"><a href="/book/{{ rs.id }}/{{ rs.slug }}">{{ rs.title}}</a></div>
+                                        <div class="viewed_price"><strong>₺{{ rs.price }}</strong></div>
+                                        <div class="viewed_name"><a href="/book/{{ rs.id }}/{{ rs.slug }}"><strong>{{ rs.title}}</strong></a></div>
                                     </div>
                                 </div>
                             </div>

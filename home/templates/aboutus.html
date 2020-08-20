@@ -1,4 +1,5 @@
 {% extends "homebase.html" %}
+{% load static %}
 {% block title %} {{ setting.title }} {% endblock %}
 {% block keywords %} {{ setting.keywords}} {% endblock %}
 {% block description %} {{ setting.description}} {% endblock %}
@@ -12,7 +13,7 @@
     <!-- BREADCRUMB -->
     <div id = "breadcrumb">
         <div class ="container">
-            <ul class ="breadcrumb">
+            <ul class ="breadcrumb-item">
                 <li><a href="/">Anasayfa</a></li>
                 <li class="active">/ Hakkımızda</li>
             </ul>

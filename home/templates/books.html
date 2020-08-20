@@ -9,15 +9,16 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Home -->
-
-    <div class="home">
-        <div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/shop_background.jpg' %}"></div>
-        <div class="home_overlay"></div>
-        <div class="home_content d-flex flex-column align-items-center justify-content-center">
-            <h2 class="home_title">{{ categorydata.title}}</h2>
+    <!-- BREADCRUMB -->
+    <div id = "breadcrumb">
+        <div class ="container">
+            <ul class ="breadcrumb-item">
+                <li><a href="/">Anasayfa</a></li>
+                <li class="active">/ {{ categorydata.title }}</li>
+            </ul>
         </div>
     </div>
+    <!-- /BREADCRUMB -->
 
     <!-- Shop -->
 
@@ -31,20 +32,7 @@
 
                     <div class="shop_content">
                         <div class="shop_bar clearfix">
-                            <div class="shop_product_count"><span>186</span> products found</div>
-                            <div class="shop_sorting">
-                                <span>Sort by:</span>
-                                <ul>
-                                    <li>
-                                        <span class="sorting_text">highest rated<i class="fas fa-chevron-down"></i></span>
-                                        <ul>
-                                            <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "original-order" }'>highest rated</li>
-                                            <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>name</li>
-                                            <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "price" }'>price</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+                            <div class="shop_product_count">{{ categorydata.title }}</div>
                         </div>
 
                         <div class="product_grid">
@@ -55,16 +43,11 @@
                                 <!-- Product Item -->
                                 <div class="product_item">
                                     <div class="product_border"></div>
-                                    <div class="product_image "><img src="{{ rs.image.url}}" alt="" style="max-height: 200px"></div>
+                                    <div class="product_image "><a href="/book/{{ rs.id }}/{{ rs.slug }}" tabindex="0" ><img src="{{ rs.image.url}}" alt="" style="max-height: 170px"></a></div>
                                     <div class="product_content">
                                         <div class="product_price">₺{{ rs.price }}</div>
                                         <div class="product_name"><div><a href="/book/{{ rs.id }}/{{ rs.slug }}" tabindex="0" >{{ rs.title}}</a></div></div>
                                     </div>
-                                    <div class="product_fav"><i class="fas fa-heart"></i></div>
-                                    <ul class="product_marks">
-                                        <li class="product_mark product_discount">-25%</li>
-                                        <li class="product_mark product_new">new</li>
-                                    </ul>
                                 </div>
                             {% endfor %}
 

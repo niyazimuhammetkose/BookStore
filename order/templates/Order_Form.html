@@ -9,6 +9,16 @@
 {% endblock %}
 
 {% block content %}
+    <!-- BREADCRUMB -->
+    <div id = "breadcrumb">
+        <div class ="container">
+            <ul class ="breadcrumb-item">
+                <li><a href="/">Anasayfa</a></li>
+                <li class="active">/ Ödeme</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
 
     <!-- Checkout Section Begin -->
     <section class="checkout spad">
@@ -54,23 +64,30 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="checkout__order">
                                 <h4>Ödeme Bilgileriniz</h4>
-                                <div class="checkout__order__products">Kitap <span>Adet</span> </div>
-                                <ul>
+                                <table class="order_info">
+                                <tr>
+                                    <td class="cart_item_title">Kitap Adı</td>
+                                    <td class="cart_item_title">Adet</td>
+                                </tr>
                                     {% for rs in schopcart %}
-                                        <li>{{ rs.book }} <span>{{ rs.quantity }}</span> </li>
-                                    {% endfor %}
-                                </ul>
+                                        <tr>
 
-                                <div class="checkout__order__subtotal">Kitap Tutar<span>${{ total }}</span></div>
-                                <div class="checkout__order__total">Toplam Tutar <span>${{ total }}</span></div>
-                                <div class="checkout__input__checkbox">
+                                            <td class="order_info"><span>{{ rs.book }}</span></td>
+                                            <td class="order_info"><span>{{ rs.quantity }}</span></td>
+
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+
+                                <div class="order_total_amount">Toplam Tutar <span>${{ total }}</span></div>
+                                <div class="custom-checkbox">
                                     <label for="payment">
                                         Ödeme bilgilerini onaylıyorum.
                                         <input type="checkbox" id="payment">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
-                                <button type="submit" class="cart_button">Tamamla</button>
+                                <button type="submit" class="button cart_button_checkout">Tamamla</button>
                             </div>
                         </div>
                     </div>

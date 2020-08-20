@@ -16,55 +16,61 @@
     <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'plugins/slick-1.8.0/slick.css' %}">
-{% if page == 'home' %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
-{% elif page == 'contact' or page == 'aboutus' or page == 'references' %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/contact_styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/contact_responsive.css' %}">
-{% elif page == 'books' %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/shop_styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/shop_responsive.css' %}">
-{% elif page == 'book_details' %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
-{% elif page == 'book_search' %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
-{% elif page == 'login' %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
-{% elif page == 'signup' %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
-{% elif page == 'user_profile' %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
-{% elif page == 'user_update' %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
-{% elif page == 'change_password' %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
-{% elif page == 'shopcart' %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/cart_styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/cart_responsive.css' %}">
-{% elif page == 'order_form' %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/cart_styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/cart_responsive.css' %}">
-{% elif page == 'order_completed' %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/shop_styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/shop_responsive.css' %}">
-{% elif page == 'user_orders' %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
-{% elif page == 'user_order_detail' %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
-{% elif page == 'user_comments' %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
-{% endif %}
+    {% if page == 'home' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+    {% elif page == 'contact' or page == 'aboutus' or page == 'references' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/contact_styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/contact_responsive.css' %}">
+    {% elif page == 'aboutus' or page == 'aboutus' or page == 'references' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/contact_styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/contact_responsive.css' %}">
+    {% elif page == 'references' or page == 'aboutus' or page == 'references' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/contact_styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/contact_responsive.css' %}">
+    {% elif page == 'books' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/shop_styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/shop_responsive.css' %}">
+    {% elif page == 'book_details' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
+    {% elif page == 'book_search' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
+    {% elif page == 'login' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
+    {% elif page == 'signup' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
+    {% elif page == 'user_profile' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
+    {% elif page == 'user_update' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
+    {% elif page == 'change_password' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
+    {% elif page == 'shopcart' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/cart_styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/cart_responsive.css' %}">
+    {% elif page == 'order_form' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/cart_styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/cart_responsive.css' %}">
+    {% elif page == 'order_completed' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/shop_styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/shop_responsive.css' %}">
+    {% elif page == 'user_orders' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
+    {% elif page == 'user_order_detail' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
+    {% elif page == 'user_comments' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/product_responsive.css' %}">
+    {% endif %}
 
 
     {% block head %} {% endblock %}

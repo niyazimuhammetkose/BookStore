@@ -12,7 +12,7 @@
     <!-- BREADCRUMB -->
     <div id = "breadcrumb">
         <div class ="container">
-            <ul class ="breadcrumb">
+            <ul class ="breadcrumb-item">
                 <li><a href="/">Anasayfa</a></li>
                 <li class="active">/ İletişim</li>
             </ul>
@@ -22,81 +22,74 @@
 
     <!-- Contact Info -->
 
-	<div class="contact_info">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 offset-lg-1">
-					<div class="single_post_quote text-center">
+    <div class="contact_info">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="single_post_quote text-center">
                         {{ setting.contact | safe }}
                     </div>
-				</div>
+                </div>
 
                 <div class="col-lg-10 offset-lg-1">
-					<div class="contact_info_container d-flex flex-lg-row flex-column justify-content-between align-items-between">
+                    <div class="contact_info_container d-flex flex-lg-row flex-column justify-content-between align-items-between">
 
-						<!-- Contact Item -->
-						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
-							<div class="contact_info_image"><img src="{% static 'images/contact_1.png' %}" alt=""></div>
-							<div class="contact_info_content">
-								<div class="contact_info_title">Telefon</div>
-								<div class="contact_info_text">{{ setting.phone}}</div>
-							</div>
-						</div>
-
-						<!-- Contact Item -->
-						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
-							<div class="contact_info_image"><img src="{% static 'images/contact_2.png' %}" alt=""></div>
-							<div class="contact_info_content">
-								<div class="contact_info_title">Email</div>
-								<div class="contact_info_text">{{ setting.email }}</div>
-							</div>
-						</div>
-
-						<!-- Contact Item -->
-						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
-							<div class="contact_info_image"><img src="{% static 'images/contact_3.png' %}" alt=""></div>
-							<div class="contact_info_content">
-								<div class="contact_info_title">Adres</div>
-								<div class="contact_info_text">{{ setting.address}}</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Contact Form -->
-
-	<div class="contact_form">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 offset-lg-1">
-					<div class="contact_form_container">
-						<div class="contact_form_title">Bize Ulaşın</div>
-                        {% if messages %}
-                        {% for message in messages %}
-                            <div class="alert alert-{{ message.tags }}" role="alert">
-                                {{ message }}
+                        <!-- Contact Item -->
+                        <div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
+                            <div class="contact_info_image"><img src="{% static 'images/contact_1.png' %}" alt=""></div>
+                            <div class="contact_info_content">
+                                <div class="contact_info_title">Telefon</div>
+                                <div class="contact_info_text">{{ setting.phone}}</div>
                             </div>
-                        {% endfor %}
-                        {% endif %}
+                        </div>
 
-						<form action="#" id="contact_form" method="post">
-							<div class="contact_form_inputs d-flex flex-md-row  justify-content-between align-items-between">
-								{% csrf_token %}
+                        <!-- Contact Item -->
+                        <div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
+                            <div class="contact_info_image"><img src="{% static 'images/contact_2.png' %}" alt=""></div>
+                            <div class="contact_info_content">
+                                <div class="contact_info_title">Email</div>
+                                <div class="contact_info_text">{{ setting.email }}</div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Item -->
+                        <div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
+                            <div class="contact_info_image"><img src="{% static 'images/contact_3.png' %}" alt=""></div>
+                            <div class="contact_info_content">
+                                <div class="contact_info_title">Adres</div>
+                                <div class="contact_info_text">{{ setting.address}}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Form -->
+
+    <div class="contact_form">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="contact_form_container">
+                        <div class="contact_form_title">Bize Ulaşın</div>
+
+                        <form action="#" id="contact_form" method="post">
+                            <div class="contact_form_inputs d-flex flex-md-row  justify-content-between align-items-between">
+                                {% csrf_token %}
                                 {{ form.as_p }}
-							</div>
-							<div class="contact_form_button">
-								<button type="submit" class="button contact_submit_button">Gönder</button>
-							</div>
-						</form>
+                            </div>
+                            <div class="contact_form_button">
+                                <button type="submit" class="button contact_submit_button">Gönder</button>
+                            </div>
+                        </form>
 
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="panel"></div>
-	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel"></div>
+    </div>
 {% endblock %}

@@ -10,15 +10,16 @@
 
 
 {% block content %}
-    <!-- Home -->
-
-    <div class="home">
-        <div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/shop_background.jpg' %}"></div>
-        <div class="home_overlay"></div>
-        <div class="home_content d-flex flex-column align-items-center justify-content-center">
-            <h2 class="home_title">Hesabım</h2>
+    <!-- BREADCRUMB -->
+    <div id = "breadcrumb">
+        <div class ="container">
+            <ul class ="breadcrumb-item">
+                <li><a href="/">Anasayfa</a></li>
+                <li class="active">/ Hesabım</li>
+            </ul>
         </div>
     </div>
+    <!-- /BREADCRUMB -->
 
 
     <div class="shop">
@@ -86,19 +87,19 @@
                         </tr>
 
                         {% for rs in orderitems %}
-                        <tr>
-                            <td class="text-left">
-                                <a href="/book/{{ rs.book_id }}/{{ rs.book.slug }}">
-                                <img src="{{ rs.book.image.url }}" height="80">
-                                </a>
-                            </td>
-                            <td class="text-left">{{ rs.book.title }}</td>
-                            <td class="text-left">{{ rs.price }}</td>
-                            <td class="text-left">{{ rs.quantity }}</td>
-                            <td class="text-left">{{ rs.amount }}</td>
-                            <td class="text-left">{{ rs.status }}</td>
-                            <td class="text-left">{{ rs.create_at }}</td>
-                        </tr>
+                            <tr>
+                                <td class="text-left">
+                                    <a href="/book/{{ rs.book_id }}/{{ rs.book.slug }}">
+                                        <img src="{{ rs.book.image.url }}" height="80">
+                                    </a>
+                                </td>
+                                <td class="text-left">{{ rs.book.title }}</td>
+                                <td class="text-left">{{ rs.price }}</td>
+                                <td class="text-left">{{ rs.quantity }}</td>
+                                <td class="text-left">{{ rs.amount }}</td>
+                                <td class="text-left">{{ rs.status }}</td>
+                                <td class="text-left">{{ rs.create_at }}</td>
+                            </tr>
                         {% endfor %}
 
                     </table>
