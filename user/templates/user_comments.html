@@ -1,0 +1,73 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %} {{ profile.user_name }} Profile {% endblock %}
+{% block keywords %} {{ setting.keywords}} {% endblock %}
+{% block description %} {{ setting.description}} {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+
+{% block content %}
+    <!-- Home -->
+
+    <div class="home">
+        <div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/shop_background.jpg' %}"></div>
+        <div class="home_overlay"></div>
+        <div class="home_content d-flex flex-column align-items-center justify-content-center">
+            <h2 class="home_title">Hesabım</h2>
+        </div>
+    </div>
+
+
+    <div class="shop">
+        <div class="container">
+            <div class="row">
+                <div class ="col-md-3">
+                    {% include 'user_panel.html' %}
+                </div>
+
+                <div class="col-md-9">
+
+                    <div class="cart_title">
+                        <h3 class="title">Yorum Bilgileri</h3>
+                    </div>
+
+                    <table class="table">
+                        <tr>
+                            <th class="text-left">Kitap Adı </th>
+                            <th class="text-left">Derece </th>
+                            <th class="text-left">Konu </th>
+                            <th class="text-left">Yorum </th>
+                            <th class="text-left">Status </th>
+                            <th class="text-left">Tarih </th>
+                            <th class="text-left">Sil </th>
+                        </tr>
+
+                        {% for rs in comments %}
+                            <tr>
+                                <td class="text-left">
+                                    <a href="/book/{{ rs.book_id }}/{{ rs.book.slug }}">
+                                        {{ rs.book.title }}
+                                    </a>
+                                </td>
+                                <td class="text-left">{{ rs.rate }}</td>
+                                <td class="text-left">{{ rs.subject }}</td>
+                                <td class="text-left">{{ rs.comment }}</td>
+                                <td class="text-left">{{ rs.status }}</td>
+                                <td class="text-left">{{ rs.create_at }}</td>
+                                <td class="text-left"><button class="button cart_button"><a href="/user/deletecomment/{{ rs.id }}"  onclick="return confirm('Emin misiniz?')">Sil</a></button></td>
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
