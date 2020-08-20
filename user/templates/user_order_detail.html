@@ -1,0 +1,113 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %} {{ profile.user_name }} Profile {% endblock %}
+{% block keywords %} {{ setting.keywords}} {% endblock %}
+{% block description %} {{ setting.description}} {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+
+{% block content %}
+    <!-- Home -->
+
+    <div class="home">
+        <div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/shop_background.jpg' %}"></div>
+        <div class="home_overlay"></div>
+        <div class="home_content d-flex flex-column align-items-center justify-content-center">
+            <h2 class="home_title">Hesabım</h2>
+        </div>
+    </div>
+
+
+    <div class="shop">
+        <div class="container">
+            <div class="row">
+                <div class ="col-md-3">
+                    {% include 'user_panel.html' %}
+                </div>
+
+                <div class="col-md-9">
+                    <div class="cart_title">
+                        <h3 class="title">Fatura Bilgileri</h3>
+                    </div>
+
+                    <table class="table">
+                        <tr>
+                            <th class="text-left">Ad Soyad</th>
+                            <td class="text-left">{{ order.user.first_name }}{{ order.user.last_name }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">Telefon</th>
+                            <td class="text-left">{{ order.phone }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">Adres</th>
+                            <td class="text-left">{{ order.address }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">Şehir</th>
+                            <td class="text-left">{{ order.city }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">Ülke</th>
+                            <td class="text-left">{{ order.country }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">Status</th>
+                            <td class="text-left">{{ order.status }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">Tarih</th>
+                            <td class="text-left">{{ order.create_at }}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">Değerlendirme</th>
+                            <td class="text-left">{{ order.adminnote }}</td>
+                        </tr>
+
+                    </table>
+
+
+                    <div class="cart_title">
+                        <h3 class="title">Sipariş Bilgileri</h3>
+                    </div>
+
+                    <table class="table">
+                        <tr>
+                            <th class="text-left">Id </th>
+                            <th class="text-left">Kitap Adı </th>
+                            <th class="text-left">Fiyat </th>
+                            <th class="text-left">Adet </th>
+                            <th class="text-left">Toplam Tutar</th>
+                            <th class="text-left">Status </th>
+                            <th class="text-left">Tarih </th>
+                        </tr>
+
+                        {% for rs in orderitems %}
+                        <tr>
+                            <td class="text-left">
+                                <a href="/book/{{ rs.book_id }}/{{ rs.book.slug }}">
+                                <img src="{{ rs.book.image.url }}" height="80">
+                                </a>
+                            </td>
+                            <td class="text-left">{{ rs.book.title }}</td>
+                            <td class="text-left">{{ rs.price }}</td>
+                            <td class="text-left">{{ rs.quantity }}</td>
+                            <td class="text-left">{{ rs.amount }}</td>
+                            <td class="text-left">{{ rs.status }}</td>
+                            <td class="text-left">{{ rs.create_at }}</td>
+                        </tr>
+                        {% endfor %}
+
+                    </table>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

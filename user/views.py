@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -7,6 +8,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from Book.models import Category
 from home.models import UserProfile, Setting
+from order.models import Order, OrderBook
 from user.forms import UserUpdateForm, ProfileUpdateForm
 
 def index(request):
@@ -60,3 +62,33 @@ def change_password(request):
         category = Category.objects.all()
         form = PasswordChangeForm(request.user)
         return render(request, 'change_password.html', {'form': form, 'category': category, 'setting': setting, 'page': 'change_password'})
+
+@login_required(login_url='/login') # check login
+def orders(request):
+    setting = Setting.objects.get(pk=1)
+    category = Category.objects.all()
+    current_user = request.user
+    orders = Order.objects.filter(user_id=current_user.id)
+    context = {
+        'category': category,
+        'orders': orders,
+        'setting': setting,
+        'page': 'user_orders'
+    }
+    return render(request, 'user_orders.html', context)
+
+@login_required(login_url='/login') # check login
+def orderdetail(request,id):
+    setting = Setting.objects.get(pk=1)
+    category = Category.objects.all()
+    current_user = request.user
+    order = Order.objects.get(user_id=current_user.id, id=id)
+    orderitems = OrderBook.objects.filter(order_id=id)
+    context = {
+        'category': category,
+        'order': order,
+        'orderitems': orderitems,
+        'setting': setting,
+        'page': 'user_order_detail'
+    }
+    return render(request, 'user_order_detail.html', context)

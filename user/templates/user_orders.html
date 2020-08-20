@@ -1,0 +1,69 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %} {{ profile.user_name }} Profile {% endblock %}
+{% block keywords %} {{ setting.keywords}} {% endblock %}
+{% block description %} {{ setting.description}} {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+{% endblock %}
+
+
+{% block content %}
+    <!-- Home -->
+
+    <div class="home">
+        <div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/shop_background.jpg' %}"></div>
+        <div class="home_overlay"></div>
+        <div class="home_content d-flex flex-column align-items-center justify-content-center">
+            <h2 class="home_title">Hesabım</h2>
+        </div>
+    </div>
+
+
+    <div class="shop">
+        <div class="container">
+            <div class="row">
+                <div class ="col-md-3">
+                    {% include 'user_panel.html' %}
+                </div>
+
+                <div class="col-md-9">
+
+                    <div class="cart_title">
+                        <h3 class="title">Sipariş Bilgileri</h3>
+                    </div>
+
+                    <table class="table">
+                        <tr>
+                            <th class="text-left">Id </th>
+                            <th class="text-left">Ad </th>
+                            <th class="text-left">Soyad </th>
+                            <th class="text-left">Tutar </th>
+                            <th class="text-left">Status </th>
+                            <th class="text-left">Tarih </th>
+                            <th class="text-left">Detay </th>
+                        </tr>
+
+                        {% for rs in orders %}
+                        <tr>
+                            <td class="text-left">{{ rs.id }}</td>
+                            <td class="text-left">{{ rs.first_name }}</td>
+                            <td class="text-left">{{ rs.last_name }}</td>
+                            <td class="text-left">{{ rs.total }}</td>
+                            <td class="text-left">{{ rs.status }}</td>
+                            <td class="text-left">{{ rs.create_at }}</td>
+                            <td class="text-left"><button class="button cart_button"><a href="/user/orderdetail/{{ rs.id }}">Detay</a></button></td>
+                        </tr>
+                        {% endfor %}
+
+                    </table>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
